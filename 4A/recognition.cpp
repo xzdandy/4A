@@ -12,14 +12,14 @@ Recognition::Recognition(CvRect rect, pair<int, int> range, int isClip){
 	keycodetable.clear();
 	while (getline(fin, line)){
 		auto word = split(line);
-		keycodetable.emplace(word[0],stoi(word[1]));
+		keycodetable.emplace(word[0], stoi(word[1]));
 	}
 
 	fin.open("config/keymaptable.txt", ifstream::in);
 	keymaptable.clear();
 	while (getline(fin, line)){
 		auto word = split(line);
-		keymaptable.emplace_back(std::pair<std::pair<double, double>, std::string>{ {stoi(word[0]), stoi(word[1])}, word[2] });
+		keymaptable.emplace_back(make_pair(make_pair(stoi(word[0]), stoi(word[1])), word[2]));
 	}
 }
 Recognition::~Recognition(){}
@@ -48,7 +48,7 @@ vector<string> Recognition::split(string s){
 }
 
 vector<INFO> Recognition::getOneFrame(IplImage *img, int debug){
-	
+
 	vector<INFO> info;
 	vector<CvRect> rect_container;
 	int thresh;
@@ -151,12 +151,16 @@ vector<INFO> Recognition::infoFormat(vector<CvRect> rect_container, int debug)
 	//输出调试信息
 	for (auto &rect : rect_container)
 	{
-		info.emplace_back(INFO{{ "area", rect.height * rect.width }, { "posX", rect.x + rect.width / 2 }, { "posY", rect.y + rect.height / 2 } });
+		INFO temp; temp.clear();
+		temp.emplace("area", rect.height * rect.width);
+		temp.emplace("posX", rect.x + rect.width / 2);
+		temp.emplace("posY", rect.y + rect.height / 2);
+		info.emplace_back(temp);
 
 		if (debug){
 			cout << "Blob #" << dec << cnt << ": Area=" << rect.height * rect.width << ", Centroid=(" << rect.x + rect.width / 2 << ", " << rect.y + rect.height / 2 << ")";
-			cout << ", Key: " << keymap({ rect.x + rect.width / 2, rect.y + rect.height / 2 }) << " ";
-			cout << "0x" << hex << setfill('0') << setw(2) << keycodetable[keymap({ rect.x + rect.width / 2, rect.y + rect.height / 2 })] << endl;
+			cout << ", Key: " << keymap(PAIR(rect.x + rect.width / 2, rect.y + rect.height / 2)) << " ";
+			cout << "0x" << hex << setfill('0') << setw(2) << keycodetable[keymap(PAIR(rect.x + rect.width / 2, rect.y + rect.height / 2))] << endl;
 			cnt++;
 		}
 	}
