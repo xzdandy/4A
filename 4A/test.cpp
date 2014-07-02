@@ -3,7 +3,7 @@
 int main()
 {
 	IplImage *img;
-	Recognition *reco = new Recognition(cvRect(0, 180, 640, 150), {0,2500}, 0);
+	Recognition *reco = new Recognition(cvRect(0, 180, 640, 150), make_pair(0,2500), 0);
 	//参数解释 （CvRect rect, pair<int,int> range, int isclip = 0）
 	//第一个参数 CvRect为敏感区域，将只对敏感区域内的图片做识别
 	//推荐 键盘的铭感区域为 cvRect(0, 180, 640, 150)
