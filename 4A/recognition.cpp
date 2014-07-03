@@ -12,7 +12,7 @@ Recognition::Recognition(CvRect rect, pair<int, int> range, int isClip){
 	keycodetable.clear();
 	while (getline(fin, line)){
 		auto word = split(line);
-		keycodetable.emplace(word[0], stoi(word[1]));
+		keycodetable.emplace(word[0], stoi(word[1],0,16));
 	}
 	fin.close();
 
@@ -20,7 +20,6 @@ Recognition::Recognition(CvRect rect, pair<int, int> range, int isClip){
 	keymaptable.clear();
 	while (getline(fin, line)){
 		auto word = split(line);
-		cout << word[0] << " " << word[1] << " " << word[2] << endl;
 		keymaptable.emplace_back(make_pair(make_pair(stoi(word[0]), stoi(word[1])), word[2]));
 	}
 	fin.close();
