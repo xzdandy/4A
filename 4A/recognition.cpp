@@ -57,6 +57,10 @@ vector<INFO> Recognition::getOneFrame(IplImage *img, int debug){
 	CvSeq *first_contour = NULL;
 	CvMemStorage *pStorage = NULL;
 
+	info.clear();
+	if (!img) {
+		return info;
+	}
 	if (isClip)	img = getSensitiveArea(img);
 
 	//×ª»»Îª»Ò¶ÈÍ¼
