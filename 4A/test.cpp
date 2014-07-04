@@ -3,17 +3,17 @@
 int main()
 {
 	IplImage *img;
-	Recognition *reco = new Recognition(cvRect(0, 180, 640, 150), make_pair(0,2500), 0);
+	Recognition *reco = new Recognition(cvRect(0, 180, 610, 180), make_pair(10,2500), 1);
 	//参数解释 （CvRect rect, pair<int,int> range, int isclip = 0）
 	//第一个参数 CvRect为敏感区域，将只对敏感区域内的图片做识别
-	//推荐 键盘的铭感区域为 cvRect(0, 180, 640, 150)
+	//推荐 键盘的铭感区域为 cvRect(0, 180, 610, 180)
 	//第二个参数 range 代表过滤范围 比如 {0, 2500}表示保留 面积在 0-2500内的之别点
 	//推荐 键盘的过滤范围大概在 {10,50}待检验！
 	//第三个参数 int isclip，是否根据第一个参数截取敏感区域，主要用于测试值设置为0
 	//正式运行时推荐为将值设置为1，减少干扰。
 
 	//获取摄像头
-	CvCapture* capture = cvCaptureFromCAM(0);
+	CvCapture* capture = cvCaptureFromCAM(1);
 	if (!cvGrabFrame(capture)) { 
 		cout << "无法获得camera的帧" << endl;
 		exit(0);
