@@ -14,9 +14,9 @@
 
 using namespace std;
 
-typedef std::unordered_map<std::string, double> INFO;
-typedef std::pair<double, double> PAIR;
-typedef std::vector<std::pair<std::pair<double, double>, std::string>> KEYMAP;
+typedef std::unordered_map<std::string, int> INFO;
+typedef std::pair<int, int> PAIR;
+typedef std::vector<std::pair<PAIR, std::string>> KEYMAP;
 typedef unordered_map<std::string, int> KEYCODE;
 
 class Recognition

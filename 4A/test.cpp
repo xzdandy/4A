@@ -13,7 +13,7 @@ int main()
 	//正式运行时推荐为将值设置为1，减少干扰。
 
 	//获取摄像头
-	CvCapture* capture = cvCaptureFromCAM(1);
+	CvCapture* capture = cvCaptureFromCAM(0);
 	if (!cvGrabFrame(capture)) { 
 		cout << "无法获得camera的帧" << endl;
 		exit(0);

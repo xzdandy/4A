@@ -56,7 +56,13 @@
 164 145 {
 205 154 }
 229 155 spacebar
-454 168 '
+259 156 spacebar
+289 158 spacebar
+319 159 spacebar
+349 160 spacebar
+379 162 spacebar
+409 163 spacebar
+454 164 '
 479 167 del
 512 165 leftarrow
 537 163 downarrow
