@@ -144,11 +144,13 @@ string Recognition::keymap(PAIR pos)
 vector<int> Recognition::formatToKey(vector<INFO> info)
 {
 	vector<int> res;
+	int keycode;
 
 	auto keyPair = formatToPair(info);
 
 	for (auto& x : keyPair){
-		res.emplace_back(keycodetable[keymap(x)]);
+		keycode = keycodetable[keymap(x)];
+		if (keycode != 0x00) res.emplace_back(keycode);
 	}
 	return res;
 }
