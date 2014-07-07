@@ -49,18 +49,21 @@ vector<string> Recognition::split(string s){
 	return res;
 }
 
-vector<INFO> Recognition::getOneFrame(IplImage *img, int debug){
+vector<INFO> Recognition::getOneFrame(IplImage *originalImg, int debug){
 
 	vector<INFO> info;
 	vector<CvRect> rect_container;
 	int thresh;
 	CvSeq *first_contour = NULL;
 	CvMemStorage *pStorage = NULL;
+	IplImage *img;
 
 	info.clear();
-	if (!img) {
+	if (!originalImg) {
 		return info;
 	}
+	img = cvCreateImage(cvGetSize(originalImg), originalImg->depth, originalImg->nChannels);
+	cvCopy(originalImg, img, NULL);
 	if (isClip)	img = getSensitiveArea(img);
 
 	//×ª»»Îª»Ò¶ÈÍ¼
