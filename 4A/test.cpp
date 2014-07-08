@@ -2,7 +2,7 @@
 
 int main()
 {
-	IplImage *img;
+	IplImage *img, *showImg;
 	Recognition *reco = new Recognition(cvRect(0, 180, 610, 180), make_pair(10,2500), 1);
 	//参数解释 （CvRect rect, pair<int,int> range, int isclip = 0）
 	//第一个参数 CvRect为敏感区域，将只对敏感区域内的图片做识别
@@ -23,9 +23,10 @@ int main()
 	cvWaitKey(0);
 	while (true) {
 		img = cvQueryFrame(capture); //从摄像头中获取一帧的图片
-		cvShowImage("camera", img);
+		showImg = reco->showSensitiveArea(img); //显示敏感区域
+		cvShowImage("camera", showImg);
 		cvWaitKey(2);
-		auto info = reco->getOneFrame(img,1); //识别摄像头， 参数：(IplImage *img，int debug=0) debug代表是否开启调试模式，
+		auto info = reco->getOneFrame(img,0); //识别摄像头， 参数：(IplImage *img，int debug=0) debug代表是否开启调试模式，
 											  //默认不开启，开启后会有图片和数据的输出
 		auto keycode = reco->formatToKey(info); // 将信息转换成 vector<int>格式的按键16进制码
 		auto point = reco->formatToPair(info);	// 将信息转换成 vector<pair<int,int>>格式的坐标位置

@@ -233,3 +233,12 @@ vector<CvRect> Recognition::rectFilter(vector<CvRect> rect_container, int minAre
 	}
 	return res;
 }
+
+IplImage*  Recognition::showSensitiveArea(IplImage *img){
+	IplImage *temp = NULL;
+	if (!img) return temp;
+	temp = cvCreateImage(cvGetSize(img), img->depth, img->nChannels);
+	cvCopy(img, temp, NULL);
+	cvRectangle(temp, cvPoint(rect.x, rect.y), cvPoint(rect.x + rect.width, rect.y + rect.height), CV_RGB(255, 0, 0), 1, 8, 0);
+	return temp;
+}

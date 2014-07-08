@@ -37,6 +37,7 @@ public:
 	vector<INFO> getOneFrame(IplImage *img, int debug = 0);
 	vector<PAIR> formatToPair(vector<INFO> info);
 	vector<int> formatToKey(vector<INFO> info);
+	IplImage* showSensitiveArea(IplImage *img);
 	~Recognition();
 };
 
