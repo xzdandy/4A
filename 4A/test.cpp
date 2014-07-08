@@ -35,6 +35,10 @@ int main()
 
 	cvReleaseCapture(&capture);
 	
-  return 0;
+	return 0;
 }
+
+
+
+
 

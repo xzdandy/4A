@@ -103,6 +103,7 @@ vector<INFO> Recognition::getOneFrame(IplImage *originalImg, int debug){
 	}
 
 	cvReleaseImage(&grey);
+	cvReleaseImage(&img);
 	cvReleaseMemStorage(&pStorage);
 
 	return info;
